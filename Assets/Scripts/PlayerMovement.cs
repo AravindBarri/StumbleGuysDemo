@@ -17,10 +17,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isgrounded;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>(); 
+        controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,21 +48,26 @@ public class PlayerMovement : MonoBehaviour
             {
                 //walk
                 Walk();
+                anim.SetTrigger("Run");
             }
             else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
             {
                 //run
                 Run();
+                anim.SetTrigger("Sprint");
             }
             else if (moveDirection == Vector3.zero)
             {
                 //idle
                 Idle();
+                anim.SetTrigger("Idle");
             }
             moveDirection *= playerspeed;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Jump();
+                anim.SetTrigger("Jump");
+                Invoke("Jump", 0f);
+                //Jump();
             }
         }
         if (moveDirection.x != 0 || moveDirection.z != 0)
@@ -93,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
     }
 
@@ -102,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             isgrounded = true;
+            anim.SetTrigger("Idle");
         }
     }
 }

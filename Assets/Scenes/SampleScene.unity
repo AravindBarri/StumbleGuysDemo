@@ -239,7 +239,7 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 10
   rotationforce: 10
-  jumpHeight: 1.5
+  jumpHeight: 2
   gravity: -9.81
 --- !u!143 &391719120
 CharacterController:
@@ -560,11 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4759721911903040, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.01
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4759721911903040, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.937
+      value: 0.201
       objectReference: {fileID: 0}
     - target: {fileID: 4759721911903040, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_LocalPosition.z
