@@ -13,7 +13,7 @@ public class Pendulum : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
     {
-			random = Random.Range(0f, 1f);
+			random = Random.Range(0f, 5f);
 	}
 
     // Update is called once per frame

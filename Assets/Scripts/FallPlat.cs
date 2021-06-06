@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class FallPlat : MonoBehaviour
 {
-	public float fallTime = 0.5f;
+	public float fallTime = 4f;
+	public float regenerateTime = 5f;
+	Renderer platformcolor;
 
-
-	void OnCollisionEnter(Collision collision)
+    private void Start()
+    {
+		platformcolor = GetComponent<Renderer>();
+    }
+    void OnCollisionEnter(Collision collision)
 	{
-		foreach (ContactPoint contact in collision.contacts)
+		//Debug.DrawRay(contact.point, contact.normal, Color.white);
+		if (collision.gameObject.tag == "Player")
 		{
-			//Debug.DrawRay(contact.point, contact.normal, Color.white);
-			if (collision.gameObject.tag == "Player")
-			{
-				StartCoroutine(Fall(fallTime));
-			}
+			Invoke("changeColor", 2f);
+			StartCoroutine(Fall(fallTime));
 		}
 	}
 
 	IEnumerator Fall(float time)
 	{
+		print(time);
+		time -= 1;
 		yield return new WaitForSeconds(time);
-		Destroy(gameObject);
+		this.gameObject.SetActive(false);
+		Invoke("Regenerateplat", regenerateTime);
+	}
+	void Regenerateplat()
+    {
+		platformcolor.material.SetColor("_Color", Color.blue);
+		this.gameObject.SetActive(true);
+	}
+	void changeColor()
+    {
+		platformcolor.material.SetColor("_Color", Color.red);
 	}
 }
