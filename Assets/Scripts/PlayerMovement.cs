@@ -32,10 +32,8 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         float moveZ = Input.GetAxis("Vertical");
-        float moveX = Input.GetAxis("Horizontal") * rotationforce * Time.deltaTime;
-        transform.Rotate(Vector3.up, moveX);
-        moveDirection = new Vector3(0, 0, moveZ);
-        moveDirection = transform.TransformDirection(moveDirection);
+        float moveX = Input.GetAxis("Horizontal");
+        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
         
         if(isgrounded && velocity.y < 0)
         {
@@ -64,10 +62,21 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
             }
         }
-        
+        if (moveDirection.x != 0 || moveDirection.z != 0)
+        {
+            Vector3 targetDir = moveDirection; //Direction of the character
+
+            targetDir.y = 0;
+            if (targetDir == Vector3.zero)
+                targetDir = transform.forward;
+            Quaternion tr = Quaternion.LookRotation(targetDir); //Rotation of the character to where it moves
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, Time.deltaTime * rotationforce); //Rotate the character little by little
+            transform.rotation = targetRotation;
+        }
         controller.Move(moveDirection * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
     }
     private void Idle()
     {
