@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
     private float pushForce;
+
+    [SerializeField] private Vector3 checkpoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        if(transform.position.y < -10)
+        {
+            transform.position = checkpoint;
+        }
     }
 
     public void Move()
@@ -42,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
-        if (isgrounded)
-        {
             if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
             {
                 //walk
@@ -63,13 +68,12 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetTrigger("Idle");
             }
             moveDirection *= playerspeed;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
             {
                 anim.SetTrigger("Jump");
                 Invoke("Jump", 0f);
                 //Jump();
             }
-        }
         if (moveDirection.x != 0 || moveDirection.z != 0)
         {
             Vector3 targetDir = moveDirection; //Direction of the character
@@ -101,8 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        isgrounded = false;
     }
 
 
@@ -115,9 +119,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "CheckPoint")
+        {
+            checkpoint = transform.position;
+        }
+    }
+
     public void BouncePlayer(float force)
     {
         velocity.y = Mathf.Sqrt(force * -2 * gravity);
+        anim.SetTrigger("Jump");
     }
     public void BouncePendulum(float force, float angle)
     {
