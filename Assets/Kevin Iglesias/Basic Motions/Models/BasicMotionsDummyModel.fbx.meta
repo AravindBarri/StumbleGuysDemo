@@ -2742,7 +2742,12 @@ ModelImporter:
   - first:
       41386430: 2186277476908879412
     second: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dummy__VillagerTexture_png_002
+    second: {fileID: 2100000, guid: dd57fea2d38633a42be0ca58ae57c683, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

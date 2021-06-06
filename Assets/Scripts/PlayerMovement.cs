@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isgrounded;
 
     Animator anim;
-
+    private float pushForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,5 +113,29 @@ public class PlayerMovement : MonoBehaviour
             isgrounded = true;
             anim.SetTrigger("Idle");
         }
+    }
+
+    public void BouncePlayer(float force)
+    {
+        velocity.y = Mathf.Sqrt(force * -2 * gravity);
+    }
+    public void BouncePendulum(float force, float angle)
+    {
+        pushForce = force;
+        if(angle < 0)
+        {
+            velocity.x = -Mathf.Sqrt(force * -2 * gravity);
+            Invoke("playerBounceCorrection", 1);
+        }
+        else if(angle > 0)
+        {
+            velocity.x = Mathf.Sqrt(force * -2 * gravity);
+            Invoke("playerBounceCorrection", 1);
+        }
+        
+    }
+    public void playerBounceCorrection()
+    {
+        velocity.x = 0;
     }
 }
