@@ -311,6 +311,7 @@ MonoBehaviour:
   rotationforce: 10
   jumpHeight: 2
   gravity: -9.81
+  checkpoint: {x: 0, y: 0, z: 0}
 --- !u!143 &391719120
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1226,7 +1227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4759721911903040, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.201
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 4759721911903040, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_LocalPosition.z
