@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class TimerScript : MonoBehaviour
     void Start()
     {
         textdisplay = this.GetComponent<Text>();
-        textdisplay.text = "TIMER : 00:" + seconds;
+        textdisplay.text = "TIMER : " + seconds;
     }
     private void Update()
     {
@@ -28,16 +29,16 @@ public class TimerScript : MonoBehaviour
         seconds = seconds - 1;
         if (seconds < 10)
         {
-            textdisplay.text = "TIMER : 00:0" + seconds;
+            textdisplay.text = "TIMER : " + seconds;
         }
         else
         {
-            textdisplay.text = "TIMER : 00:" + seconds;
+            textdisplay.text = "TIMER : " + seconds;
         }
         takingAway = false;
         if (seconds == 0f)
         {
-            Debug.Log("Game over");
+            SceneManager.LoadScene(4);
         }
     }
 }

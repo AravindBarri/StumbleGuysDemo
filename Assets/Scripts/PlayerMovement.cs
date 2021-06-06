@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -124,6 +125,10 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "CheckPoint")
         {
             checkpoint = transform.position;
+        }
+        if(other.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(3);
         }
     }
 
