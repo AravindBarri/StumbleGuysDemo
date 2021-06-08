@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SphereScript : MonoBehaviour
 {
+    SphereGenerator SGObj;
+    private void Start()
+    {
+        SGObj = FindObjectOfType<SphereGenerator>();
+    }
     private void Update()
     {
         if(transform.position.y < -10)
@@ -16,7 +21,7 @@ public class SphereScript : MonoBehaviour
     {
         if(other.gameObject.tag == "CheckPoint")
         {
-            Destroy(this.gameObject);
+            SGObj.pushtoStack(other.gameObject);
         }
     }
 }
