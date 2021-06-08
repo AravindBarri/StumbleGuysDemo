@@ -16,12 +16,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     [SerializeField] private float gravity;
 
+    private float sphereforce = 5;
+
     private bool isgrounded;
 
     Animator anim;
     private float pushForce;
 
     [SerializeField] private Vector3 checkpoint;
+
+    public ParticleSystem particleprefab;
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +122,11 @@ public class PlayerMovement : MonoBehaviour
             isgrounded = true;
             anim.SetTrigger("Idle");
         }
+        if(collision.gameObject.tag == "Sphere")
+        {
+            velocity.z = -Mathf.Sqrt(sphereforce * -2 * gravity);
+            Invoke("playerBounceCorrection", 1);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -125,8 +134,13 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "CheckPoint")
         {
             checkpoint = transform.position;
+            Instantiate(particleprefab, transform.position, Quaternion.identity);
         }
-        if(other.gameObject.tag == "Finish")
+        if(other.gameObject.tag == "FinishLevel1")
+        {
+            SceneManager.LoadScene(2);
+        }
+        if (other.gameObject.tag == "Finish")
         {
             SceneManager.LoadScene(3);
         }
@@ -155,5 +169,6 @@ public class PlayerMovement : MonoBehaviour
     public void playerBounceCorrection()
     {
         velocity.x = 0;
+        velocity.z = 0;
     }
 }
