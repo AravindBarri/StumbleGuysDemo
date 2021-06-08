@@ -4997,14 +4997,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1447756334}
     m_Modifications:
-    - target: {fileID: 4566897665194459983, guid: ab2cd6d3c4ced4a40b798b70c7f75b59, type: 3}
-      propertyPath: offset.z
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4566897665194459983, guid: ab2cd6d3c4ced4a40b798b70c7f75b59, type: 3}
-      propertyPath: sphereprefab
-      value: 
-      objectReference: {fileID: 1757785358752166075, guid: 454204b5931caf0418ddc8f1c4cdc42d, type: 3}
     - target: {fileID: 5276595295045609567, guid: ab2cd6d3c4ced4a40b798b70c7f75b59, type: 3}
       propertyPath: m_Name
       value: SphereGenerator

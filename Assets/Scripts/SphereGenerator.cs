@@ -14,7 +14,7 @@ public class SphereGenerator : MonoBehaviour
     {
         InvokeRepeating("GenerateSphere", 1,4);
         SphereStack = new Stack<GameObject>();
-        CreateSphere(10);
+        CreateSphere(20);
     }
 
     // Update is called once per frame

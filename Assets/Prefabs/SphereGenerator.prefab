@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9fccb9671c449469cf312aeae894aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereprefab: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
+  sphereprefab: {fileID: 1757785358752166075, guid: 454204b5931caf0418ddc8f1c4cdc42d, type: 3}
+  offset: {x: 0, y: 0, z: -2}
