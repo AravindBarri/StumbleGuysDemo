@@ -11,10 +11,10 @@ public class SphereScript : MonoBehaviour
     }
     private void Update()
     {
-        if(transform.position.y < -10)
+        /*if(transform.position.y < -10)
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
